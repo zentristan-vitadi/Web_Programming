@@ -10,8 +10,8 @@ include "config.php";
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h6 class="fw-bold">Data Siswa</h6>
-                    <button class="btn btn-primary btn-sm"><a href="tambah_siswa.php">Tambah Data</a></button>
+                    <h6 class="fw-bold">Dashboard Atmin</h6>
+                    <button class="btn btn-primary btn-sm"><a href="tambah_admin.php">Tambah Data</a></button>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
@@ -20,20 +20,20 @@ include "config.php";
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nama</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kelas</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jurusan</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Username</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Password</th>
                                     <th class="text-secondary opacity-7">Alamat</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <?php
-                                    $query = mysqli_query($koneksi, "SELECT * FROM tbl_siswa");
-                                    foreach ($query as $siswa):
+                                    $query = mysqli_query($koneksi, "SELECT * FROM tbl_admin");
+                                    foreach ($query as $admin):
                                     ?>
                                     <td>
-                                        <p class="text-xs font-weight-bold mb-0"><?php echo $siswa['id']; ?></p>
+                                        <p class="text-xs font-weight-bold mb-0"><?php echo $admin['id_admin']; ?></p>
                                     </td>
                                     <td>
                                         <div class="d-flex px-2 py-1">
@@ -42,35 +42,34 @@ include "config.php";
                                                 <!-- team-2.jpg -->
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm"><?php echo $siswa['nama']; ?></h6>
+                                                <h6 class="mb-0 text-sm"><?php echo $admin['nama']; ?></h6>
                                                 <p class="text-xs text-secondary mb-0">Prarowo@creative-tim.com</p>
                                             </div>
                                         </div>
                                     </td>
                                     
                                     <td class="align-middle text-center text-sm">
-                                        <span class="badge badge-sm bg-gradient-success"><?php echo $siswa['kelas']; ?></span>
+                                        <span class="badge badge-sm bg-gradient-success"><?php echo $admin['username']; ?></span>
                                     </td>
                                     <td class="align-middle text-center">
-                                        <span class="text-secondary text-xs font-weight-bold"><?php echo $siswa['jurusan']; ?></span>
+                                        <span class="text-secondary text-xs font-weight-bold"><?php echo $admin['password']; ?></span>
                                     </td>
                                     <td class="align-middle">
                                         <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                            <?php echo $siswa['alamat']; ?>
+                                            <?php echo $admin['alamat']; ?>
                                         </a>
                                     </td>
                                     <td class="align-middle">
-                                        <a href="edit_siswa.php?id=<?php echo $siswa['id']; ?>" class="text-snecondary font-weight-bold text-xs card p-2 text-center" data-toggle="tooltip" data-original-title="Edit user">
+                                        <a href="edit_admin.php?id=<?php echo $admin['id_admin']; ?>" class="text-secondary font-weight-bold text-xs card p-2 text-center" data-toggle="tooltip" data-original-title="Edit user">
                                             Edit
                                         </a>
                                     </td>
                                     <td class="align-middle">
-                                        <a href="delete_siswa.php?id=<?php echo $siswa['id']; ?>" class="text-light p-2 rounded bg-danger" data-toggle="tooltip" data-original-title="Edit user">
+                                        <a href="delete_admin.php?id=<?php echo $admin['id_admin']; ?>" class="text-light p-2 rounded bg-danger" data-toggle="tooltip" data-original-title="Edit user">
                                             <i class="fa-solid fa-trash-can" style="color: #FFFF;"></i>
                                         </a>
                                     </td>
                                 </tr>
-                                <!-- text-secondary font-weight-bold text-xs card p-2 text-center text-light -->
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
