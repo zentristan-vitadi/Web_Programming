@@ -1,6 +1,8 @@
 <?php
-include "NavSideBar.php";
-include "config.php";
+include "../header/NavSideBar.php";
+include "../header/config.php";
+
+$currentPage = basename($_SERVER['PHP_SELF']);
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $NamaPanjangVar = $_POST['namaPanjang'] ?? 0;
@@ -8,7 +10,33 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $JurusanVar = $_POST['jurusan'] ?? 0;
     $AlamatVar = $_POST['alamat'] ?? 0;
 
-    mysqli_query($koneksi, "INSERT INTO tbl_siswa (nama, kelas, jurusan, alamat) VALUES('$NamaPanjangVar', '$KelasVar', '$JurusanVar', '$AlamatVar')");
+    $query = mysqli_query($koneksi, "INSERT INTO tbl_siswa (nama, kelas, jurusan, alamat) VALUES('$NamaPanjangVar', '$KelasVar', '$JurusanVar', '$AlamatVar')");
+
+    if($query){
+        $success = true;
+    }
+
+    // if($query){
+    //     echo "<script>
+    //     Swal.fire({
+    //         title: 'Success!',
+    //         text: 'Data berhasil ditambahkan',
+    //         icon: 'success',
+    //         confirmButtonText: 'OK'
+    //     }).then(() => {
+    //         window.location.href = 'siswa.php';
+    //     });
+    //     </script>";
+    // } else {
+    //     echo "<script>
+    //         Swal.fire({
+    //             title: 'Error!',
+    //         text: 'Data gagal ditambahkan',
+    //         icon: 'error',
+    //         confirmButtonText: 'OK'
+    //     });
+    //     </script>";
+    // }
 }
 ?>
 
@@ -58,3 +86,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         </div>
     </div>
 </div>
+
+<?php if($success){ ?>
+    <script>
+        Swal.fire({
+            title: 'Berhasil!',
+            text: 'Data berhasil ditambahkan',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2000
+        }).then(() => {
+            window.location.href = 'siswa.php';
+        });
+    </script>
+<?php } ?>

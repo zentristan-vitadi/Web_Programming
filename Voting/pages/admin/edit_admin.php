@@ -1,8 +1,12 @@
 <?php
-include "config.php";
+include "../header/config.php";
+include "../header/NavSideBar.php";
+
+$currentPage = basename($_SERVER['PHP_SELF']);
 
 // ambil id dari url, kalau di url ad id, simpan di var $id, kalau ga ada, isi null
 $id = $_GET['id'] ?? null;
+$success = false;
 
 // ambil data id
 if($id){
@@ -17,12 +21,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $JurusanVar = $_POST['nama'] ?? 0;
     $AlamatVar = $_POST['alamat'] ?? 0;
 
-    mysqli_query($koneksi, "UPDATE tbl_admin SET username='$NamaPanjangVar', password='$KelasVar', nama='$JurusanVar', alamat='$AlamatVar' WHERE id_admin = $id");
-
-    header("Location: admin.php");
-    exit();
+    $query = mysqli_query($koneksi, "UPDATE tbl_admin SET username='$NamaPanjangVar', password='$KelasVar', nama='$JurusanVar', alamat='$AlamatVar' WHERE id_admin = $id");
+    if($query){
+        $success = true;
+    }
 }
-include "NavSideBar.php";
 ?>
 
 
@@ -59,3 +62,17 @@ include "NavSideBar.php";
         </div>
     </div>
 </div>
+
+<?php if($success){ ?>
+    <script>
+        Swal.fire({
+            title: 'Berhasil!',
+            text: 'Data berhasil ditambahkan',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2000
+        }).then(() => {
+            window.location.href = 'admin.php';
+        });
+    </script>
+<?php } ?>

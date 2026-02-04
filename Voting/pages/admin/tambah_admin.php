@@ -1,6 +1,8 @@
 <?php
-include "NavSideBar.php";
-include "config.php";
+include "../header/NavSideBar.php";
+include "../header/config.php";
+
+$currentPage = basename($_SERVER['PHP_SELF']);
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $NamaPanjangVar = $_POST['username'] ?? 0;
@@ -8,7 +10,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $JurusanVar = $_POST['nama'] ?? 0;
     $AlamatVar = $_POST['alamat'] ?? 0;
 
-    mysqli_query($koneksi, "INSERT INTO tbl_admin (username, password, nama, alamat) VALUES('$NamaPanjangVar', '$KelasVar', '$JurusanVar', '$AlamatVar')");
+    $query = mysqli_query($koneksi, "INSERT INTO tbl_admin (username, password, nama, alamat) VALUES('$NamaPanjangVar', '$KelasVar', '$JurusanVar', '$AlamatVar')");
+
+    if($query){
+        $success = true;
+    }
 }
 ?>
 
@@ -50,3 +56,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         </div>
     </div>
 </div>
+
+<?php if($success){ ?>
+    <script>
+        Swal.fire({
+            title: 'Berhasil!',
+            text: 'Data berhasil ditambahkan',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2000
+        }).then(() => {
+            window.location.href = 'admin.php';
+        });
+    </script>
+<?php } ?>

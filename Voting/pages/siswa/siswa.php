@@ -1,6 +1,11 @@
 <?php
-include "NavSideBar.php";
-include "config.php";   
+include "../header/NavSideBar.php";
+include "../header/config.php";
+
+$currentPage = basename($_SERVER['PHP_SELF']);
+
+// basename() fungso untuk mengambil nama file dari path lengkap
+// $_SERVER['PHP_SELF'] berisi path lengkap dari file yang sedang diakses
 ?>
 
 <script src="https://kit.fontawesome.com/ef1f748698.js" crossorigin="anonymous"></script>
@@ -10,8 +15,8 @@ include "config.php";
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h6 class="fw-bold">Dashboard Calon Ketos</h6>
-                    <button class="btn btn-primary btn-sm"><a href="tambah_ketos.php">Tambah Data</a></button>
+                    <h6 class="fw-bold">Data Siswa</h6>
+                    <button class="btn btn-primary btn-sm"><a href="../siswa/tambah_siswa.php">Tambah Data</a></button>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
@@ -20,58 +25,63 @@ include "config.php";
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nama</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Visi</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Misi</th>
-                                    <th class="text-secondary opacity-7">Foto</th>
-                                    </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kelas</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jurusan</th>
+                                    <th class="text-secondary opacity-7">Alamat</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <?php
                                     $no = 1;
-                                    $query = mysqli_query($koneksi, "SELECT * FROM tbl_calonketos");
-                                    foreach ($query as $ketos):
+                                    $query = mysqli_query($koneksi, "SELECT * FROM tbl_siswa");
+                                    foreach ($query as $siswa):
                                     ?>
-                                    <td>
-                                        <div class="d-flex px-2 py-1"><?=  $no++ ?></div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex px-2 py-1">
-                                            <div>
-                                                <img src="../assets/img/LogoOSISinvis.jpg" class="avatar avatar-sm me-3" alt="user1">
-                                                <!-- team-2.jpg -->
+                                        <td>
+                                            <div class="d-flex px-2 py-1"><?= $no++ ?></div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                                <div>
+                                                    <img src="../../assets/img/javierStory.PNG" class="avatar avatar-sm me-3" alt="user1">
+                                                    <!-- team-2.jpg -->
+                                                </div>
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm"><?php echo $siswa['nama']; ?></h6>
+                                                    <p class="text-xs text-secondary mb-0">Prarowo@creative-tim.com</p>
+                                                </div>
                                             </div>
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm"><?php echo $ketos['nama']; ?></h6>
-                                                <p class="text-xs text-secondary mb-0">Prarowo@creative-tim.com</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    
-                                    <td class="align-middle text-center text-sm">
-                                        <span class="badge badge-sm bg-gradient-success"><?php echo $ketos['visi']; ?></span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <span class="text-secondary text-xs font-weight-bold"><?php echo $ketos['misi']; ?></span>
-                                    </td>
-                                    <td class="align-middle">
-                                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                            <?php echo $ketos['foto']; ?>
-                                        </a>
-                                    </td>
-                                    <td class="align-middle">
-                                        <a href="edit_ketos.php?id=<?php echo $ketos['id_calon']; ?>" class="text-secondary font-weight-bold text-xs card p-2 text-center" data-toggle="tooltip" data-original-title="Edit user">
-                                            Edit
-                                        </a>
-                                    </td>
-                                    <td class="align-middle">
-                                        <a href="delete_ketos.php?id=<?php echo $ketos['id_calon']; ?>" class="text-light p-2 rounded bg-danger" data-toggle="tooltip" data-original-title="Edit user">
+                                        </td>
+
+                                        <td class="align-middle text-center text-sm">
+                                            <span class="badge badge-sm bg-gradient-success"><?php echo $siswa['kelas']; ?></span>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <span class="text-secondary text-xs font-weight-bold"><?php echo $siswa['jurusan']; ?></span>
+                                        </td>
+                                        <td class="align-middle">
+                                            <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                                <?php echo $siswa['alamat']; ?>
+                                            </a>
+                                        </td>
+                                        <td class="align-middle">
+                                            <a href="../siswa/edit_siswa.php?id=<?php echo $siswa['id']; ?>" class="text-secondary font-weight-bold text-xs card p-2 text-center" data-toggle="tooltip" data-original-title="Edit user">
+                                                Edit
+                                            </a>
+                                        </td>
+                                        <td class="align-middle">
+                                            <a href="#" onclick="siswaDelete(<?= $siswa['id']; ?>)" class="text-light p-2 rounded bg-danger" data-toggle="tooltip" data-original-title="Edit user">
+                                                <i class="fa-solid fa-trash-can" style="color: #FFFF;"></i>
+                                            </a>
+
+                                            <!-- <a href="../siswa/delete_siswa.php?id=<?php echo $siswa['id']; ?>" class="text-light p-2 rounded bg-danger" data-toggle="tooltip" data-original-title="Edit user">
                                             <i class="fa-solid fa-trash-can" style="color: #FFFF;"></i>
-                                        </a>
-                                    </td>
+                                        </a> -->
+                                        </td>
                                 </tr>
-                                <?php endforeach; ?>
+                                <!-- text-secondary font-weight-bold text-xs card p-2 text-center text-light -->
+                            <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
@@ -165,6 +175,54 @@ include "config.php";
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="../assets/js/soft-ui-dashboard.min.js?v=1.1.0"></script>
+
+
+<script>
+    function siswaDelete(id) {
+        Swal.fire({
+            title: "Apakah Anda Yakin?",
+            text: "Data Ini Akan Hapus Permanen Dan Tidak Bisa Dikembalikan",
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: "Ya, Hapus",
+            denyButtonText: `Jangan Hapus`,
+            confirmButtonColor: '#2eb845ff',
+            cancelButtonColor: '#d33',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil Terhapus!',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                setTimeout(() => {
+                    window.location.href = `../siswa/delete_siswa.php?id=` + id;
+                }, 2000);
+            } else if (result.isDenied) {   
+                Swal.fire("Batal Dihapus!", "", "error");
+            }
+        });
+    }
+</script>
+
+<!-- <script>
+    function siswaDelete(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = `../siswa/delete_siswa.php?id=${id}`;
+            }
+        })
+    }
+</script> -->
 </body>
 
 </html>

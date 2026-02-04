@@ -1,8 +1,12 @@
 <?php
-include "config.php";
+include "../header/config.php";
+include "../header/NavSideBar.php";
+
+$currentPage = basename($_SERVER['PHP_SELF']);
 
 // ambil id dari url, kalau di url ad id, simpan di var $id, kalau ga ada, isi null
 $id = $_GET['id'] ?? null;
+$success = false;
 
 // ambil data id
 if($id){
@@ -17,16 +21,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $JurusanVar = $_POST['jurusan'] ?? 0;
     $AlamatVar = $_POST['alamat'] ?? 0;
 
-    mysqli_query($koneksi, "UPDATE tbl_siswa SET nama='$NamaPanjangVar', kelas='$KelasVar', jurusan='$JurusanVar', alamat='$AlamatVar' WHERE id = $id");
+    $query = mysqli_query($koneksi, "UPDATE tbl_siswa SET nama='$NamaPanjangVar', kelas='$KelasVar', jurusan='$JurusanVar', alamat='$AlamatVar' WHERE id = $id");
 
-    header("Location: siswa.php");
-    exit();
-    
+    if($query){
+        $success = true;
+    }
 }
-include "NavSideBar.php";
+
 ?>
-
-
 
 <div class="container-fluid py-4">
     <div class="row">
@@ -72,3 +74,17 @@ include "NavSideBar.php";
         </div>
     </div>
 </div>
+
+<?php if($success){ ?>
+    <script>
+        Swal.fire({
+            title: 'Berhasil!',
+            text: 'Data berhasil ditambahkan',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2000
+        }).then(() => {
+            window.location.href = 'siswa.php';
+        });
+    </script>
+<?php } ?>

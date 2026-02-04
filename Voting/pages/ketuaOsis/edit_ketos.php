@@ -1,6 +1,19 @@
 <?php
-include "NavSideBar.php";
-include "config.php";
+include "../header/config.php";
+include "../header/NavSideBar.php";
+
+$currentPage = basename($_SERVER['PHP_SELF']);
+
+// ambil id dari url, kalau di url ad id, simpan di var $id, kalau ga ada, isi null
+$id = $_GET['id'] ?? null;
+$success = false;
+
+// ambil data id
+if($id){
+    $query = mysqli_query($koneksi, "SELECT * FROM tbl_calonketos WHERE id_calon = $id");
+    // mysqli_fetch_assoc = ngambil satu baris dari query, terus di simpan di var siswa
+    $calon = mysqli_fetch_assoc($query);
+}
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $NamaPanjangVar = $_POST['nama'] ?? 0;
@@ -8,7 +21,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $JurusanVar = $_POST['misi'] ?? 0;
     $AlamatVar = $_POST['foto'] ?? 0;
 
-    mysqli_query($koneksi, "INSERT INTO tbl_calonketos (nama, visi, misi, foto) VALUES('$NamaPanjangVar', '$KelasVar', '$JurusanVar', '$AlamatVar')");
+    $query = mysqli_query($koneksi, "UPDATE tbl_calonketos SET nama='$NamaPanjangVar', visi='$KelasVar', misi='$JurusanVar', foto='$AlamatVar' WHERE id_calon = $id");
+    if($query){
+        $success = true;
+    }
 }
 ?>
 
@@ -25,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <form class="px-4" method="POST">
                         <div class="form-group">
                             <label for="" class="form-control-label">Nama Calon</label>
-                            <input type="text " class="form-control" name="nama" placeholder="ajam...">
+                            <input type="text " class="form-control" name="nama" value="<?php echo $calon['nama']; ?>">
                         </div>
                         <!-- <div class="form-group">
                             <label for="" class="form-control-label">Kelas</label>
@@ -33,15 +49,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         </div> -->
                         <div class="form-group">
                             <label for="" class="form-control-label">Visi Calon</label>
-                            <input type="text" class="form-control" name="visi" placeholder="membuka 19 juta...">
+                            <input type="text" class="form-control" name="visi" value="<?php echo $calon['visi']; ?>">
                         </div>
                         <div class="form-group">
                             <label for="" class="form-control-label">Misi Calon</label>
-                            <input type="text" class="form-control" name="misi" placeholder="membeli sawit...">
+                            <input type="text" class="form-control" name="misi" value="<?php echo $calon['misi']; ?>">
                         </div>
                         <div class="form-group">
                             <label for="" class="form-control-label">Foto Calon</label>
-                            <input type="text" class="form-control" name="foto" placeholder="jawa...">
+                            <input type="text" class="form-control" name="foto" value="<?php echo $calon['foto']; ?>">
                         </div>
                         <button type="submit" class="btn btn-primary"><a href="../pages/tambah_siswa.php"></a>Submit</button>
                     </form>
@@ -50,3 +66,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         </div>
     </div>
 </div>
+
+<?php if($success){ ?>
+    <script>
+        Swal.fire({
+            title: 'Berhasil!',
+            text: 'Data berhasil ditambahkan',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2000
+        }).then(() => {
+            window.location.href = 'calon_Ketos.php';
+        });
+    </script>
+<?php } ?>

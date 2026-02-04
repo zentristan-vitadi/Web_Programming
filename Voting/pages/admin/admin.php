@@ -1,6 +1,8 @@
 <?php
-include "NavSideBar.php";
-include "config.php";   
+include "../header/NavSideBar.php";
+include "../header/config.php";   
+
+$currentPage = basename($_SERVER['PHP_SELF']);
 ?>
 
 <script src="https://kit.fontawesome.com/ef1f748698.js" crossorigin="anonymous"></script>
@@ -10,8 +12,8 @@ include "config.php";
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h6 class="fw-bold">Data Siswa</h6>
-                    <button class="btn btn-primary btn-sm"><a href="tambah_siswa.php">Tambah Data</a></button>
+                    <h6 class="fw-bold">Dashboard Atmin</h6>
+                    <button class="btn btn-primary btn-sm"><a href="../admin/tambah_admin.php">Tambah Data</a></button>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
@@ -20,18 +22,18 @@ include "config.php";
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nama</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kelas</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jurusan</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Username</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Password</th>
                                     <th class="text-secondary opacity-7">Alamat</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <?php
                                     $no = 1;
-                                    $query = mysqli_query($koneksi, "SELECT * FROM tbl_siswa");
-                                    foreach ($query as $siswa):
+                                    $query = mysqli_query($koneksi, "SELECT * FROM tbl_admin");
+                                    foreach ($query as $admin):
                                     ?>
                                     <td>
                                         <div class="d-flex px-2 py-1"><?=  $no++ ?></div>
@@ -39,39 +41,41 @@ include "config.php";
                                     <td>
                                         <div class="d-flex px-2 py-1">
                                             <div>
-                                                <img src="../assets/img/LogoOSISinvis.jpg" class="avatar avatar-sm me-3" alt="user1">
+                                                <img src="../../assets/img/LogoOSISinvis.jpg" class="avatar avatar-sm me-3" alt="user1">
                                                 <!-- team-2.jpg -->
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm"><?php echo $siswa['nama']; ?></h6>
+                                                <h6 class="mb-0 text-sm"><?php echo $admin['nama']; ?></h6>
                                                 <p class="text-xs text-secondary mb-0">Prarowo@creative-tim.com</p>
                                             </div>
                                         </div>
                                     </td>
                                     
                                     <td class="align-middle text-center text-sm">
-                                        <span class="badge badge-sm bg-gradient-success"><?php echo $siswa['kelas']; ?></span>
+                                        <span class="badge badge-sm bg-gradient-success"><?php echo $admin['username']; ?></span>
                                     </td>
                                     <td class="align-middle text-center">
-                                        <span class="text-secondary text-xs font-weight-bold"><?php echo $siswa['jurusan']; ?></span>
+                                        <span class="text-secondary text-xs font-weight-bold"><?php echo $admin['password']; ?></span>
                                     </td>
                                     <td class="align-middle">
                                         <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                            <?php echo $siswa['alamat']; ?>
+                                            <?php echo $admin['alamat']; ?>
                                         </a>
                                     </td>
                                     <td class="align-middle">
-                                        <a href="edit_siswa.php?id=<?php echo $siswa['id']; ?>" class="text-snecondary font-weight-bold text-xs card p-2 text-center" data-toggle="tooltip" data-original-title="Edit user">
+                                        <a href="edit_admin.php?id=<?php echo $admin['id_admin']; ?>" class="text-secondary font-weight-bold text-xs card p-2 text-center" data-toggle="tooltip" data-original-title="Edit user">
                                             Edit
                                         </a>
                                     </td>
                                     <td class="align-middle">
-                                        <a href="delete_siswa.php?id=<?php echo $siswa['id']; ?>" class="text-light p-2 rounded bg-danger" data-toggle="tooltip" data-original-title="Edit user">
+                                        <a href="#" onclick="adminDelete(<?= $admin['id_admin']; ?>)" class="text-light p-2 rounded bg-danger" data-toggle="tooltip" data-original-title="Edit user">
                                             <i class="fa-solid fa-trash-can" style="color: #FFFF;"></i>
                                         </a>
+                                        <!-- <a href="../admin/delete_admin.php?id=<?php echo $admin['id_admin']; ?>" class="text-light p-2 rounded bg-danger" data-toggle="tooltip" data-original-title="Edit user">
+                                            <i class="fa-solid fa-trash-can" style="color: #FFFF;"></i>
+                                        </a> -->
                                     </td>
                                 </tr>
-                                <!-- text-secondary font-weight-bold text-xs card p-2 text-center text-light -->
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
@@ -166,6 +170,36 @@ include "config.php";
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="../assets/js/soft-ui-dashboard.min.js?v=1.1.0"></script>
+
+<script>
+    function adminDelete(id) {
+        Swal.fire({
+            title: "Apakah Anda Yakin?",
+            text: "Data Ini Akan Hapus Permanen Dan Tidak Bisa Dikembalikan",
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: "Ya, Hapus",
+            denyButtonText: `Jangan Hapus`,
+            confirmButtonColor: '#2eb845ff',
+            cancelButtonColor: '#d33',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil Terhapus!',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                setTimeout(() => {
+                    window.location.href = `../admin/delete_admin.php?id=` + id;
+                }, 2000);
+            } else if (result.isDenied) {   
+                Swal.fire("Batal Dihapus!", "", "error");
+            }
+        });
+    }
+</script>
+
 </body>
 
 </html>
