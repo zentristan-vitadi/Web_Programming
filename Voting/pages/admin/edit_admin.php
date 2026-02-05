@@ -41,19 +41,19 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <form class="px-4" method="POST">
                         <div class="form-group">
                             <label for="" class="form-control-label">Username</label>
-                            <input type="text " class="form-control" name="username" value="<?php echo $admin['username']; ?>">
+                            <input type="text " class="form-control" name="username" value="<?php echo $admin['username']; ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="" class="form-control-label">Password</label>
-                            <input type="password" class="form-control" name="password" value="<?php echo $admin['password']; ?>">
+                            <input type="password" class="form-control" name="password" value="<?php echo $admin['password']; ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="" class="form-control-label">Nama</label>
-                            <input type="text" class="form-control" name="nama" value="<?php echo $admin['nama']; ?>">
+                            <input type="text" class="form-control" name="nama" value="<?php echo $admin['nama']; ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="" class="form-control-label">Alamat</label>
-                            <input type="text" class="form-control" name="alamat" value="<?php echo $admin['alamat']; ?>">
+                            <input type="text" class="form-control" name="alamat" value="<?php echo $admin['alamat']; ?>" required>
                         </div>
                         <button type="submit" class="btn btn-primary"><a href="../pages/tambah_siswa.php"></a>Submit</button>
                     </form>

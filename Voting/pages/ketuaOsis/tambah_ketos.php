@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <form class="px-4" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="" class="form-control-label">Nama Calon</label>
-                            <input type="text " class="form-control" name="nama" placeholder="ajam...">
+                            <input type="text " class="form-control" name="nama" placeholder="ajam..." required>
                         </div>
                         <!-- <div class="form-group">
                             <label for="" class="form-control-label">Kelas</label>
@@ -56,19 +56,19 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         </div> -->
                         <div class="form-group">
                             <label for="" class="form-control-label">Visi Calon</label>
-                            <input type="text" class="form-control" name="visi" placeholder="membuka 19 juta...">
+                            <input type="text" class="form-control" name="visi" placeholder="membuka 19 juta..." required>
                         </div>
                         <div class="form-group">
                             <label for="" class="form-control-label">Misi Calon</label>
-                            <input type="text" class="form-control" name="misi" placeholder="membeli sawit...">
+                            <input type="text" class="form-control" name="misi" placeholder="membeli sawit..." required>
                         </div>
                         <div class="form-group">
                             <label for="" class="form-control-label">Email Calon</label>
-                            <input type="email" class="form-control" name="email" placeholder="sawit@gmail...">
+                            <input type="email" class="form-control" name="email" placeholder="sawit@gmail..." required>
                         </div>
                         <div class="form-group">
                             <label for="" class="form-control-label">Foto Calon</label>
-                            <input type="file" class="form-control" name="namafoto" accept="image/*">
+                            <input type="file" class="form-control" name="namafoto" accept="image/*" required>
                         </div>
                         <button type="submit" class="btn btn-primary"><a href="../pages/tambah_siswa.php"></a>Submit</button>
                     </form>

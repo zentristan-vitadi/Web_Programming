@@ -49,9 +49,14 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                                         <i class="ni ni-active-40 text-dark text-gradient text-lg opacity-10" aria-hidden="true"></i>
                                     </div>
                                     <h5 class="text-white font-weight-bolder mb-0 mt-3">
-                                        357
+                                        <?php
+                                        include "../header/config.php";
+                                        $query = mysqli_query($koneksi, "SELECT COUNT(*) AS jumlah_calon FROM tbl_calonketos");
+                                        $data = mysqli_fetch_assoc($query);
+                                        echo $data['jumlah_calon'];
+                                        ?> Calon
                                     </h5>
-                                    <span class="text-white text-sm">Click Events</span>
+                                    <span class="text-white text-sm">Jumlah Calon Ketua Osis</span>
                                 </div>
                                 <div class="col-4">
                                     <div class="dropstart text-end mb-6">
@@ -64,7 +69,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                                             <li><a class="dropdown-item border-radius-md" href="javascript:;">Something else here</a></li>
                                         </ul>
                                     </div>
-                                    <p class="text-white text-sm text-end font-weight-bolder mt-auto mb-0">+124%</p>
+                                    <!-- <p class="text-white text-sm text-end font-weight-bolder mt-auto mb-0">MBUDDD</p> -->
                                 </div>
                             </div>
                         </div>

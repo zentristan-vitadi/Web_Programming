@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <form class="px-4" method="POST">
                         <div class="form-group">
                             <label for="" class="form-control-label">Username</label>
-                            <input type="text " class="form-control" name="username" placeholder="ajam...">
+                            <input type="text " class="form-control" name="username" placeholder="ajam..." required>
                         </div>
                         <!-- <div class="form-group">
                             <label for="" class="form-control-label">Kelas</label>
@@ -39,15 +39,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         </div> -->
                         <div class="form-group">
                             <label for="" class="form-control-label">Password</label>
-                            <input type="password" class="form-control" name="password" placeholder="123...">
+                            <input type="password" class="form-control" name="password" placeholder="123..." required>
                         </div>
                         <div class="form-group">
                             <label for="" class="form-control-label">Nama</label>
-                            <input type="text" class="form-control" name="nama" placeholder="ilur...">
+                            <input type="text" class="form-control" name="nama" placeholder="ilur..." required>
                         </div>
                         <div class="form-group">
                             <label for="" class="form-control-label">Alamat</label>
-                            <input type="text" class="form-control" name="alamat" placeholder="jawa...">
+                            <input type="text" class="form-control" name="alamat" placeholder="jawa..." required>
                         </div>
                         <button type="submit" class="btn btn-primary"><a href="../pages/tambah_siswa.php"></a>Submit</button>
                     </form>

@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <form class="px-4" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="" class="form-control-label">Nama Calon</label>
-                            <input type="text " class="form-control" name="nama" value="<?php echo $calon['nama']; ?>">
+                            <input type="text " class="form-control" name="nama" value="<?php echo $calon['nama']; ?>" required>
                         </div>
                         <!-- <div class="form-group">
                             <label for="" class="form-control-label">Kelas</label>
@@ -66,15 +66,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         </div> -->
                         <div class="form-group">
                             <label for="" class="form-control-label">Visi Calon</label>
-                            <input type="text" class="form-control" name="visi" value="<?php echo $calon['visi']; ?>">
+                            <input type="text" class="form-control" name="visi" value="<?php echo $calon['visi']; ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="" class="form-control-label">Misi Calon</label>
-                            <input type="text" class="form-control" name="misi" value="<?php echo $calon['misi']; ?>">
+                            <input type="text" class="form-control" name="misi" value="<?php echo $calon['misi']; ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="" class="form-control-label">Email Calon</label>
-                            <input type="email" class="form-control" name="email" placeholder="sawit@gmail...">
+                            <input type="email" class="form-control" name="email" placeholder="sawit@gmail..." required>
                         </div>
                         <div class="form-group">
                             <label for="" class="form-control-label">Foto Ketos</label>

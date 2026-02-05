@@ -59,14 +59,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <form class="px-4" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="" class="form-control-label">Nama Panjang</label>
-                            <input type="text " class="form-control" name="namaPanjang" value="<?php echo $siswa['nama']; ?>">
+                            <input type="text " class="form-control" name="namaPanjang" value="<?php echo $siswa['nama']; ?>" required>
                         </div>
                         <!-- <div class="form-group">
                             <label for="" class="form-control-label">Kelas</label>
                             <input type="text " class="form-control" name="kelas" value="X-1">
                         </div> -->
                         <label for="" class="form-control-label">Kelas</label>
-                        <select class="form-control" name="kelas" value="<?php echo $siswa['kelas']; ?>">
+                        <select class="form-control" name="kelas" value="<?php echo $siswa['kelas']; ?>" required>
                             <option>X-1</option>
                             <option>X-2</option>
                             <option>X-3</option>
@@ -76,18 +76,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             <input type="text " class="form-control" name="jurusan" value="RPL">
                         </div> -->
                         <label for="" class="form-control-label">Jurusan</label>
-                        <select class="form-control" name="jurusan" value="<?php echo $siswa['jurusan']; ?>">
+                        <select class="form-control" name="jurusan" value="<?php echo $siswa['jurusan']; ?>" required>
                             <option>RPL</option>
                             <option>DKV</option>
                             <option>TKJ</option>
                         </select>
                         <div class="form-group">
                             <label for="" class="form-control-label">Alamat</label>
-                            <input type="text " class="form-control" name="alamat" value="<?php echo $siswa['alamat']; ?>">
+                            <input type="text " class="form-control" name="alamat" value="<?php echo $siswa['alamat']; ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="" class="form-control-label">Email</label>
-                            <input type="email" class="form-control" name="email" placeholder="example@mail.com">
+                            <input type="email" class="form-control" name="email" placeholder="example@mail.com" required>
                         </div>
                         <div class="form-group">
                             <label for="" class="form-control-label">Foto Siswa</label>
