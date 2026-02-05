@@ -41,12 +41,12 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                                     <td>
                                         <div class="d-flex px-2 py-1">
                                             <div>
-                                                <img src="../../assets/img/LogoOSISinvis.jpg" class="avatar avatar-sm me-3" alt="user1">
+                                                <img src="../../assets/foto_calon/<?php echo $ketos['foto']; ?>" class="avatar avatar-sm me-3" alt="user1">
                                                 <!-- team-2.jpg -->
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
                                                 <h6 class="mb-0 text-sm"><?php echo $ketos['nama']; ?></h6>
-                                                <p class="text-xs text-secondary mb-0">Prarowo@creative-tim.com</p>
+                                                <p class="text-xs text-secondary mb-0"><?php echo $ketos['email']; ?></p>
                                             </div>
                                         </div>
                                     </td>
@@ -58,17 +58,12 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                                         <span class="text-secondary text-xs font-weight-bold"><?php echo $ketos['misi']; ?></span>
                                     </td>
                                     <td class="align-middle">
-                                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                            <?php echo $ketos['foto']; ?>
-                                        </a>
-                                    </td>
-                                    <td class="align-middle">
                                         <a href="../ketuaOsis/edit_ketos.php?id=<?php echo $ketos['id_calon']; ?>" class="text-secondary font-weight-bold text-xs card p-2 text-center" data-toggle="tooltip" data-original-title="Edit user">
                                             Edit
                                         </a>
                                     </td>
                                     <td class="align-middle">
-                                        <a href="#" onclick="ketosDelete(<?= $admin['id_admin']; ?>)" class="text-light p-2 rounded bg-danger" data-toggle="tooltip" data-original-title="Edit user">
+                                        <a href="#" onclick="ketosDelete(<?= $ketos['id_calon']; ?>)" class="text-light p-2 rounded bg-danger" data-toggle="tooltip" data-original-title="Edit user">
                                             <i class="fa-solid fa-trash-can" style="color: #FFFF;"></i>
                                         </a>
 

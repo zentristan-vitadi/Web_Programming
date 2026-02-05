@@ -20,8 +20,26 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $KelasVar = $_POST['kelas'] ?? 0;
     $JurusanVar = $_POST['jurusan'] ?? 0;
     $AlamatVar = $_POST['alamat'] ?? 0;
+    $EmailVar = $_POST['email'] ?? 0;
+    $FotoVar = $_POST['fotoSiswa'] ?? 0;
 
-    $query = mysqli_query($koneksi, "UPDATE tbl_siswa SET nama='$NamaPanjangVar', kelas='$KelasVar', jurusan='$JurusanVar', alamat='$AlamatVar' WHERE id = $id");
+    if($_FILES['foto']['name'] != ""){
+        $foto = $_FILES['foto']['name'];
+        $tmp = $_FILES['foto']['tmp_name'];
+
+        $folder = "../../assets/foto_calon/";
+        // $namaBaru = time() . "_" . $foto;
+        move_uploaded_file($tmp, $folder . "/" . $foto);
+
+        // Update + Foto
+        $sql = "UPDATE tbl_siswa SET nama = '$NamaPanjangVar', kelas = '$KelasVar', jurusan = '$JurusanVar', alamat = '$AlamatVar', foto = '$foto', email = '$EmailVar'  WHERE id = '$id'";
+    } else{
+        // Update tanpa foto
+        $sql = "UPDATE tbl_siswa SET nama = '$NamaPanjangVar', kelas = '$KelasVar', jurusan = '$JurusanVar', alamat = '$AlamatVar', email = '$EmailVar'  WHERE id = '$id'";
+    }
+
+
+    $query = mysqli_query($koneksi, $sql);
 
     if($query){
         $success = true;
@@ -38,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <h6 class="fw-bold">Data Siswa</h6>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
-                    <form class="px-4" method="POST">
+                    <form class="px-4" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="" class="form-control-label">Nama Panjang</label>
                             <input type="text " class="form-control" name="namaPanjang" value="<?php echo $siswa['nama']; ?>">
@@ -66,6 +84,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         <div class="form-group">
                             <label for="" class="form-control-label">Alamat</label>
                             <input type="text " class="form-control" name="alamat" value="<?php echo $siswa['alamat']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-control-label">Email</label>
+                            <input type="email" class="form-control" name="email" placeholder="example@mail.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-control-label">Foto Siswa</label>
+                            <img src="../../assets/foto_calon/<?php echo $siswa['foto']; ?>" class="avatar avatar-sm me-3" alt="user1">
+                            <input type="file" class="form-control" name="foto" accept="image/*">
                         </div>
                         <button type="submit" class="btn btn-primary"><a href="../pages/tambah_siswa.php"></a>Submit</button>
                     </form>

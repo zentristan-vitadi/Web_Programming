@@ -27,7 +27,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nama</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kelas</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jurusan</th>
-                                    <th class="text-secondary opacity-7">Alamat</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Alamat</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
                                 </tr>
                             </thead>
@@ -44,12 +44,12 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                                         <td>
                                             <div class="d-flex px-2 py-1">
                                                 <div>
-                                                    <img src="../../assets/img/javierStory.PNG" class="avatar avatar-sm me-3" alt="user1">
+                                                    <img src="../../assets/foto_calon/<?php echo $siswa['foto']; ?>" class="avatar avatar-sm me-3" alt="user1">
                                                     <!-- team-2.jpg -->
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center">
                                                     <h6 class="mb-0 text-sm"><?php echo $siswa['nama']; ?></h6>
-                                                    <p class="text-xs text-secondary mb-0">Prarowo@creative-tim.com</p>
+                                                    <p class="text-xs text-secondary mb-0"><?php echo $siswa['email']; ?></p>
                                                 </div>
                                             </div>
                                         </td>
@@ -80,7 +80,6 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                                         </a> -->
                                         </td>
                                 </tr>
-                                <!-- text-secondary font-weight-bold text-xs card p-2 text-center text-light -->
                             <?php endforeach; ?>
                             </tbody>
                         </table>
