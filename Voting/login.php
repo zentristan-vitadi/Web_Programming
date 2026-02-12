@@ -15,14 +15,14 @@
 
 <body>
     <div class="wrapper">
-        <form action="#">
+        <form action="pages/proses_login.php" method="POST" autocomplete="off">
             <h2>Login</h2>
             <div class="input-field">
-                <input type="text" required>
-                <label>Masukan Email</label>
+                <input type="text" required name="username">
+                <label>Masukan Username</label>
             </div>
             <div class="input-field">
-                <input type="password" required>
+                <input type="password" required name="password">
                 <label>Masukan Password</label>
             </div>
             <div class="forget">

@@ -11,6 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $AlamatVar = $_POST['alamat'] ?? 0;
     $EmailVar = $_POST['email'] ?? 0;
     $FotoVar = $_POST['fotoSiswa'] ?? 0;
+    $UsernameVar = $_POST['username'] ?? 0;
+    $PasswordVar = $_POST['password'] ?? 0;
 
     // upload folder gambar
     $folder = "../../assets/foto_calon/";
@@ -26,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $namaBaru = time() . "_" . $namafile;
     move_uploaded_file($tmpfile, $folder . "/" . $namaBaru);
 
-    $query = mysqli_query($koneksi, "INSERT INTO tbl_siswa (nama, kelas, jurusan, alamat, email, foto) VALUES('$NamaPanjangVar', '$KelasVar', '$JurusanVar', '$AlamatVar', '$EmailVar', '$namaBaru')");
+    $query = mysqli_query($koneksi, "INSERT INTO tbl_siswa (nama, kelas, jurusan, alamat, email, foto, username, password) VALUES('$NamaPanjangVar', '$KelasVar', '$JurusanVar', '$AlamatVar', '$EmailVar', '$namaBaru', '$UsernameVar','$PasswordVar')");
 
     if($query){
         $success = true;
@@ -94,6 +96,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         <div class="form-group">
                             <label for="" class="form-control-label">Alamat</label>
                             <input type="text " class="form-control" name="alamat" placeholder="Bogor..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-control-label">Username</label>
+                            <input type="text " class="form-control" name="username" placeholder="JohnSnow123..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-control-label">password</label>
+                            <input type="text " class="form-control" name="password" placeholder="Bogor..." required>
                         </div>
                         <div class="form-group">
                             <label for="" class="form-control-label">Email</label>
