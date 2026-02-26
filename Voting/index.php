@@ -1,3 +1,14 @@
+<?php
+session_start();
+// kalo session login blom ada
+if(!isset($_SESSION['login'])){
+    // arahkan ke login
+    header("Location: login.php");
+    exit();
+}
+include "pages/header/config.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,8 +63,8 @@ include "pages/header/config.php";
       <nav id="navmenu" class="navmenu">
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
-
-      <a class="btn-getstarted" href="index.html#about">Get Started</a>
+      <a class="btn-getstarted" href="#"><?= $_SESSION['nama'] ?></a>
+      <a class="btn-getstarted bg-danger " href="pages/logout.php">Log Out</a>
 
     </div>
   </header>
@@ -67,7 +78,7 @@ include "pages/header/config.php";
       </div>
       <div class="container text-center">
         <div class="d-flex flex-column justify-content-center align-items-center">
-          <h1 data-aos="fade-up">Pernikahan <span> Ketua Osis</span></h1>
+          <h1 data-aos="fade-up">Pemilihan <span> Ketua Osis</span></h1>
           <p data-aos="fade-up" data-aos-delay="100">Tentukan Masa Depan Sekolah Ini Dengan Memilih Ketos Yang Benar Agar Tidak Menjadi Prawowo<br></p>
 
           <form action="pages/voting.php" method="POST" id="formVote">

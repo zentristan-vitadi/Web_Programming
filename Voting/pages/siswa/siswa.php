@@ -74,10 +74,6 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                                             <a href="#" onclick="siswaDelete(<?= $siswa['id']; ?>)" class="text-light p-2 rounded bg-danger" data-toggle="tooltip" data-original-title="Edit user">
                                                 <i class="fa-solid fa-trash-can" style="color: #FFFF;"></i>
                                             </a>
-
-                                            <!-- <a href="../siswa/delete_siswa.php?id=<?php echo $siswa['id']; ?>" class="text-light p-2 rounded bg-danger" data-toggle="tooltip" data-original-title="Edit user">
-                                            <i class="fa-solid fa-trash-can" style="color: #FFFF;"></i>
-                                        </a> -->
                                         </td>
                                 </tr>
                             <?php endforeach; ?>
