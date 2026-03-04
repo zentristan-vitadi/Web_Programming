@@ -18,8 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 }
 ?>
 
-
-
 <div class="container-fluid py-4">
     <div class="row">
         <div class="col-12">
