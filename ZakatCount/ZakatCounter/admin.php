@@ -17,6 +17,10 @@ include 'config.php';
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet">
   <link
     href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
     rel="stylesheet" />
@@ -29,9 +33,9 @@ include 'config.php';
 
 <body class="sb-nav-fixed">
   <nav
-    class="sb-topnav navbar navbar-expand navbar-dark bg-success bg-gradient">
+    class="sb-topnav navbar navbar-expand navbar-dark bg-dark bg-gradient">
     <!-- Navbar Brand-->
-    <a class="navbar-brand ps-3 fw-bold fs-3" href="index.html">Zakat Kita</a>
+    <a class="navbar-brand ps-3 fw-bold fs-3" href="index.html" style="font-family: 'Berkshire Swash', serif; font-style: normal;">Zakat Kita</a>
     <!-- Sidebar Toggle-->
     <button
       class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
@@ -44,12 +48,12 @@ include 'config.php';
   <div id="layoutSidenav">
     <div id="layoutSidenav_nav">
       <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-        <div class="sb-sidenav-menu bg-success bg-gradient">
+        <div class="sb-sidenav-menu bg-black bg-gradient">
           <div class="nav">
             <div class="sb-sidenav-menu-heading">Core</div>
             <a class="nav-link" href="index.html">
               <div class="sb-nav-link-icon">
-                <i class="fas fa-tachometer-alt"></i>
+                <i class="fa-solid fa-house" style="color: rgb(255, 255, 255);"></i>
               </div>
               Home
             </a>
@@ -57,59 +61,63 @@ include 'config.php';
         </div>
         <div class="sb-sidenav-footer">
           <div class="small">Logged in as:</div>
-          Start Bootstrap
+          Masjid Riyadhus Shalihin
         </div>
       </nav>
     </div>
     <div id="layoutSidenav_content">
       <main>
         <div class="container-fluid px-4">
-          <h1 class="mt-4 fw-bold">Dashboard Zakat Masjid Riyadhus Shalihin</h1>
+          <div class="d-flex align-items-center justify-content-start text-align-start">
+            <i class="fa-solid fa-circle-user mb-3 mx-3" style="color: rgb(33, 37, 41); font-size: 3.5rem;"></i>
+            <h1 class="mt-4 fw-bold my-5" style="font-family: 'Berkshire Swash', serif; font-style: normal;">Dashboard Zakat Masjid Riyadhus Shalihin</h1>
+          </div>
+
           <div class="row">
             <div class="col-xl-3 col-md-6">
-              <div class="card bg-success text-white mb-4">
+              <div class="card bg-success bg-gradient text-white mb-4">
                 <div class="card-body">
-                  <div class="fw-bold fs-5"><?php
-                                            include "config.php";
-                                            $query = mysqli_query($koneksi, "SELECT SUM(keterangan) as total_uang
+                  <div class="fw-bold " style="font-size: 30px;"><?php
+                                                                  include "config.php";
+                                                                  $query = mysqli_query($koneksi, "SELECT SUM(keterangan) as total_uang
 FROM tbl_zakat");
-                                            $data = mysqli_fetch_assoc($query);
-                                            echo $data['total_uang'];
-                                            ?></div>
+                                                                  $data = mysqli_fetch_assoc($query);
+                                                                  echo $data['total_uang'];
+                                                                  ?> <i class="fa-solid fa-user mx-3" style="color: rgb(255, 255, 255);"></i></div>
                   Total Orang Yang Telah Berzakat
                 </div>
               </div>
             </div>
             <div class="col-xl-3 col-md-6">
-              <div class="card bg-success text-white mb-4">
+              <div class="card bg-success bg-gradient text-white mb-4">
                 <div class="card-body">
-                  <div class="fw-bold fs-5"><?php
-                                                include "config.php";
-                                                $query = mysqli_query($koneksi, "SELECT SUM(Jumlah_uang) as total_uang FROM tbl_zakat");
-                                                $data = mysqli_fetch_assoc($query);
+                  <div class="fw-bold" style="font-size: 30px;"><?php
+                                                                include "config.php";
+                                                                $query = mysqli_query($koneksi, "SELECT SUM(Jumlah_uang) as total_uang FROM tbl_zakat");
+                                                                $data = mysqli_fetch_assoc($query);
 
-                                                $total = $data['total_uang'] ?? 0;
-                                                $formatted = 'Rp ' . number_format($total, 0, ',', '.');
+                                                                $total = $data['total_uang'] ?? 0;
+                                                                $formatted = 'Rp ' . number_format($total, 0, ',', '.');
 
-                                                echo $formatted;
-                                                ?></div>
+                                                                echo $formatted;
+                                                                ?> <i class="fa-solid fa-money-bill-1-wave mx-3" style="color: rgb(255, 255, 255);"></i></div>
                   Uang Yang Telah Diperoleh
                 </div>
               </div>
             </div>
             <div class="col-xl-3 col-md-6">
-              <div class="card bg-success text-white mb-4">
+              <div class="card bg-success bg-gradient text-white mb-4">
                 <div class="card-body">
-                  <div class="fw-bold fs-5"><?php
-                                                include "config.php";
-                                                $query = mysqli_query($koneksi, "SELECT SUM(Jumlah_Beras) as total_uang FROM tbl_zakat");
-                                                $data = mysqli_fetch_assoc($query);
+                  <div class="fw-bold" style="font-size: 30px;"><?php
+                                                                include "config.php";
+                                                                $query = mysqli_query($koneksi, "SELECT SUM(Jumlah_Beras) as total_uang FROM tbl_zakat");
+                                                                $data = mysqli_fetch_assoc($query);
 
-                                                $total = $data['total_uang'] ?? 0;
-                                                $formatted = 'Kg ' . number_format($total, 0, ',', '.');
+                                                                $total = $data['total_uang'] ?? 0;
+                                                                $formatted = 'Kg ' . number_format($total, 0, ',', '.');
 
-                                                echo $formatted;
-                                                ?></div>
+                                                                echo $formatted;
+                                                                ?> <i class="fa-solid fa-sack-dollar mx-3" style="color: rgb(255, 255, 255);"></i></div>
                   Jumlah Beras
                 </div>
               </div>
@@ -118,7 +126,7 @@ FROM tbl_zakat");
           <div class="card mb-4">
             <div class="card-header pb-0">
               <h6 class="fw-bold">Dashboard Atmin</h6>
-              <button class="btn btn-primary btn-sm my-3"><a href="tambah.php" class="text-light" style="text-decoration: none
+              <button class="btn btn-success btn-sm my-3"><a href="tambah.php" class="text-light" style="text-decoration: none
               ;">Tambah Data</a></button>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
@@ -133,7 +141,7 @@ FROM tbl_zakat");
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Jumlah Beras</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Metode</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tanggal</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Buat Berapa Orang</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Keterangan</th>
                       </th>
                     </tr>
                   </thead>
@@ -148,29 +156,29 @@ FROM tbl_zakat");
                           <div class="d-flex px-2 py-1"><?= $no++ ?></div>
                         </td>
                         <td>
-                          <div class="d-flex px-2 py-1">
+                          <div class="d-flex px-2 py-1 text-center">
                             <div class="d-flex flex-column justify-content-center">
                               <h6 class="mb-0 text-sm fw-bold"><?php echo $zakat['nama_donatur']; ?></h6>
                             </div>
                           </div>
                         </td>
                         <td class="align-middle text-center">
-                          <span class="text-secondary text-xs font-weight-bold"><?php echo $zakat['jenis_zakat']; ?></span>
+                          <span class="text-secondary text-xs font-weight-bold "><?php echo $zakat['jenis_zakat']; ?></span>
                         </td>
                         <td class="align-middle text-center">
-                          <span class="text-secondary text-xs font-weight-bold"><?php echo $zakat['Jumlah_uang']; ?></span>
+                          <span class="text-secondary text-xs font-weight-bold "><?php echo $zakat['Jumlah_uang']; ?></span>
                         </td>
                         <td class="align-middle text-center">
-                          <span class="text-secondary text-xs font-weight-bold"><?php echo $zakat['Jumlah_beras']; ?></span>
+                          <span class="text-secondary text-xs font-weight-bold "><?php echo $zakat['Jumlah_beras']; ?></span>
                         </td>
                         <td class="align-middle text-center">
-                          <span class="text-secondary text-xs font-weight-bold"><?php echo $zakat['metode']; ?></span>
+                          <span class="text-secondary text-xs font-weight-bold "><?php echo $zakat['metode']; ?></span>
                         </td>
                         <td class="align-middle text-center">
-                          <span class="text-secondary text-xs font-weight-bold"><?php echo $zakat['tanggal']; ?></span>
+                          <span class="text-secondary text-xs font-weight-bold "><?php echo $zakat['tanggal']; ?></span>
                         </td>
                         <td class="align-middle">
-                          <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                          <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user" style="text-decoration: none;">
                             <?php echo $zakat['keterangan']; ?>
                           </a>
                         </td>
@@ -197,7 +205,7 @@ FROM tbl_zakat");
         <div class="container-fluid px-4">
           <div
             class="d-flex align-items-center justify-content-between small">
-            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+            <div class="text-muted">Copyright &copy; zentristan 2026</div>
             <div>
               <a href="#">Privacy Policy</a>
               &middot;

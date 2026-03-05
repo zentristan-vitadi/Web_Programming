@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             text: 'Data berhasil ditambahkan',
             icon: 'success',
             showConfirmButton: false,
-            timer: 500
+            timer: 1000
         }).then(() => {
             window.location.href = 'admin.php';
         });

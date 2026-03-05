@@ -1992,7 +1992,9 @@ progress {
   font-size: 0.875em;
   color: #6c757d;
 }
-
+.berkshireFont{
+  font-family: 'Berkshire Swash', serif;
+}
 .form-control, .datatable-input {
   display: block;
   width: 100%;
