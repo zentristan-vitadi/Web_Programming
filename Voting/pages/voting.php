@@ -1,5 +1,6 @@
 <?php
 include "header/config.php";
+include "header/NavSideBar.php";
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     $id_calon = $_POST['id_calon'] ?? 0;
