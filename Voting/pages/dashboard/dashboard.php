@@ -134,7 +134,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                         <div class="card-body p-3 position-relative">
                             <div class="row">
                                 <div class="col-8 text-start">
-                                    <img src="../../assets/foto_calon/nagiGrunoho.jpg" class="avatar avatar-sm me-6" alt="user1">
+                                    <img src="../../assets/foto_calon/nagiGrunoho.jpg" class="avatar avatar-sm me-6" alt="user1" width="100px">
                                     <h5 class="text-white font-weight-bolder mb-0 mt-3">
                                         <?php
                                         $query = mysqli_query($koneksi, "SELECT tbl_calonketos.nama, COUNT(tbl_voting.id_calon) AS jumlah
