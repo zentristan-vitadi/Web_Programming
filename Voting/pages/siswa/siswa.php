@@ -16,69 +16,76 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             <div class="card mb-4">
                 <div class="card-header pb-0">
                     <h6 class="fw-bold">Data Siswa</h6>
-                    <button class="btn btn-primary btn-sm"><a href="../siswa/tambah_siswa.php">Tambah Data</a></button>
+                    <div class="d-flex">
+                        <button class="btn btn-primary btn-sm me-2"><a href="../siswa/tambah_siswa.php">Tambah Data</a></button>
+                        <form action="export_pdf.php" method="POST" target="_blank">
+                            <button class="btn btn-success btn-sm" type="submit">Export PDF</button>
+                        </form>
+                    </div>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
-                        <table class="table align-items-center mb-0">
-                            <thead>
-                                <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nama</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kelas</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jurusan</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Alamat</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <?php
-                                    $no = 1;
-                                    $query = mysqli_query($koneksi, "SELECT * FROM tbl_siswa");
-                                    foreach ($query as $siswa):
-                                    ?>
-                                        <td>
-                                            <div class="d-flex px-2 py-1"><?= $no++ ?></div>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex px-2 py-1">
-                                                <div>
-                                                    <img src="../../assets/foto_calon/<?php echo $siswa['foto']; ?>" class="avatar avatar-sm me-3" alt="user1">
-                                                    <!-- team-2.jpg -->
+                        <div id="areaPDF">
+                            <table class="table align-items-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nama</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kelas</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jurusan</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Alamat</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <?php
+                                        $no = 1;
+                                        $query = mysqli_query($koneksi, "SELECT * FROM tbl_siswa");
+                                        foreach ($query as $siswa):
+                                        ?>
+                                            <td>
+                                                <div class="d-flex px-2 py-1"><?= $no++ ?></div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex px-2 py-1">
+                                                    <div>
+                                                        <img src="../../assets/foto_calon/<?php echo $siswa['foto']; ?>" class="avatar avatar-sm me-3" alt="user1">
+                                                        <!-- team-2.jpg -->
+                                                    </div>
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm"><?php echo $siswa['nama']; ?></h6>
+                                                        <p class="text-xs text-secondary mb-0"><?php echo $siswa['email']; ?></p>
+                                                    </div>
                                                 </div>
-                                                <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="mb-0 text-sm"><?php echo $siswa['nama']; ?></h6>
-                                                    <p class="text-xs text-secondary mb-0"><?php echo $siswa['email']; ?></p>
-                                                </div>
-                                            </div>
-                                        </td>
+                                            </td>
 
-                                        <td class="align-middle text-center text-sm">
-                                            <span class="badge badge-sm bg-gradient-success"><?php echo $siswa['kelas']; ?></span>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <span class="text-secondary text-xs font-weight-bold"><?php echo $siswa['jurusan']; ?></span>
-                                        </td>
-                                        <td class="align-middle">
-                                            <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                                <?php echo $siswa['alamat']; ?>
-                                            </a>
-                                        </td>
-                                        <td class="align-middle">
-                                            <a href="../siswa/edit_siswa.php?id=<?php echo $siswa['id']; ?>" class="text-secondary font-weight-bold text-xs card p-2 text-center" data-toggle="tooltip" data-original-title="Edit user">
-                                                Edit
-                                            </a>
-                                        </td>
-                                        <td class="align-middle">
-                                            <a href="#" onclick="siswaDelete(<?= $siswa['id']; ?>)" class="text-light p-2 rounded bg-danger" data-toggle="tooltip" data-original-title="Edit user">
-                                                <i class="fa-solid fa-trash-can" style="color: #FFFF;"></i>
-                                            </a>
-                                        </td>
-                                </tr>
-                            <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                                            <td class="align-middle text-center text-sm">
+                                                <span class="badge badge-sm bg-gradient-success"><?php echo $siswa['kelas']; ?></span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold"><?php echo $siswa['jurusan']; ?></span>
+                                            </td>
+                                            <td class="align-middle">
+                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                                    <?php echo $siswa['alamat']; ?>
+                                                </a>
+                                            </td>
+                                            <td class="align-middle">
+                                                <a href="../siswa/edit_siswa.php?id=<?php echo $siswa['id']; ?>" class="text-secondary font-weight-bold text-xs card p-2 text-center" data-toggle="tooltip" data-original-title="Edit user">
+                                                    Edit
+                                                </a>
+                                            </td>
+                                            <td class="align-middle">
+                                                <a href="#" onclick="siswaDelete(<?= $siswa['id']; ?>)" class="text-light p-2 rounded bg-danger" data-toggle="tooltip" data-original-title="Edit user">
+                                                    <i class="fa-solid fa-trash-can" style="color: #FFFF;"></i>
+                                                </a>
+                                            </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -194,30 +201,12 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 setTimeout(() => {
                     window.location.href = `../siswa/delete_siswa.php?id=` + id;
                 }, 2000);
-            } else if (result.isDenied) {   
+            } else if (result.isDenied) {
                 Swal.fire("Batal Dihapus!", "", "error");
             }
         });
     }
 </script>
-
-<!-- <script>
-    function siswaDelete(id) {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = `../siswa/delete_siswa.php?id=${id}`;
-            }
-        })
-    }
-</script> -->
 </body>
 
 </html>

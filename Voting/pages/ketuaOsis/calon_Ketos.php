@@ -13,7 +13,12 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             <div class="card mb-4">
                 <div class="card-header pb-0">
                     <h6 class="fw-bold">Dashboard Calon Ketos</h6>
-                    <button class="btn btn-primary btn-sm"><a href="../ketuaOsis/tambah_ketos.php">Tambah Data</a></button>
+                    <div class="d-flex">
+                        <button class="btn btn-primary btn-sm me-2"><a href="../ketuaOsis/tambah_ketos.php">Tambah Data</a></button>
+                        <form action="export_pdf.php" method="POST" target="_blank">
+                            <button class="btn btn-success btn-sm" type="submit">Export PDF</button>
+                        </form>
+                    </div>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">

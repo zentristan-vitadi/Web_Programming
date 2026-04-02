@@ -2,14 +2,8 @@
 require_once('../../TCPDF/tcpdf.php');
 include "../header/config.php";
 
-// ambil data chart
-$chartImage = $_POST['chart_image'] ?? '';
-
 // query data untuk tabel
-$query = mysqli_query($koneksi, "SELECT tbl_calonketos.nama, tbl_calonketos.foto, COUNT(tbl_voting.id_calon) AS jumlah
-FROM tbl_calonketos INNER JOIN tbl_voting
-on tbl_voting.id_calon=tbl_calonketos.id_calon
-GROUP BY tbl_voting.id_calon;");
+$query = mysqli_query($koneksi, "SELECT * FROM tbl_calonketos");
 
 $pdf = new TCPDF(); 
 $pdf->AddPage();
@@ -21,16 +15,6 @@ $tanggal = date('d-m-Y');
 $html = '<h1 align="center">SMK Informatika Pesat</h1>';
 $html .= '<p align="center">Tanggal: ' . $tanggal . '</p>';
 
-
-
-// grafik
-if ($chartImage){
-    $html .= ' <div>
-    <img src= "' . $chartImage . '"
-    width="500">
-    </div> ';
-}
-
 // render header first
 $pdf->writeHTML($html, true, false, true, false, '');
 
@@ -38,22 +22,24 @@ $pdf->writeHTML($html, true, false, true, false, '');
 $table = '
 <table cellpadding="5" style="border-collapse: collapse; width: 100%;">
     <thead>
-        <tr style="background-color: #f2f2f2;" align="center" style="font-weight: bold;">
+        <tr style="background-color: #f2f2f2;" align="center">
             <th style="border: 1px solid #000000; font-weight: bold;">No.</th>
             <th style="border: 1px solid #000000; font-weight: bold;">Nama Calon</th>
-            <th style="border: 1px solid #000000; font-weight: bold;">Perolehan Hasil</th>
+            <th style="border: 1px solid #000000; font-weight: bold;">Visi</th>
+            <th style="border: 1px solid #000000; font-weight: bold;">Misi</th>
         </tr>
     </thead>
     <tbody>
 ';
 
 $no = 1;
-while ($data = mysqli_fetch_assoc($query)) {
+while ($siswa = mysqli_fetch_assoc($query)) {
     $table .= '
         <tr>
             <td align="center" style="border: 1px solid #000000;">' . $no++ . '</td>
-            <td style="border: 1px solid #000000;">' . $data['nama'] . '</td>
-            <td align="center" style="border: 1px solid #000000;">' . $data['jumlah'] . '</td>
+            <td style="border: 1px solid #000000;">' . $siswa['nama'] . '</td>
+            <td align="center" style="border: 1px solid #000000;">' . $siswa['misi'] . '</td>
+            <td align="center" style="border: 1px solid #000000;">' . $siswa['visi'] . '</td>
         </tr>
     ';
 }
@@ -66,4 +52,4 @@ $table .= '
 
 // render
 $pdf->writeHTML($table, true, false, true, false, '');
-$pdf->Output('laporan_voting.pdf', 'I');
+$pdf->Output('laporan_siswa.pdf', 'I');
