@@ -16,6 +16,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
 <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
 
+<html lang="en">
 <div class="container-fluid py-4">
     <div class="row">
         <div class="col-lg-6 col-12">
@@ -218,10 +219,10 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 <div class="card-header pb-0">
                     <div class="row">
                         <div class="col-lg-6 col-7">
-                            <h6>Projects</h6>
+                            <h6>Management Pemilihan OSIS</h6>
                             <p class="text-sm mb-0">
                                 <i class="fa fa-check text-info" aria-hidden="true"></i>
-                                <span class="font-weight-bold ms-1">30 done</span> this month
+                                <span class="font-weight-bold ms-1">Daftar Calon Ketua Osis</span>
                             </p>
                         </div>
                         <div class="col-lg-6 col-5 my-auto text-end">
@@ -229,11 +230,6 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                                 <a class="cursor-pointer" id="dropdownTable" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fa fa-ellipsis-v text-secondary"></i>
                                 </a>
-                                <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" aria-labelledby="dropdownTable">
-                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
-                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Another action</a></li>
-                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Something else here</a></li>
-                                </ul>
                             </div>
                         </div>
                     </div>
@@ -243,14 +239,19 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                         <table class="table align-items-center mb-0">
                             <thead>
                                 <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Companies</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Members</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Budget</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Completion</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Visi</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Misi</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Progress</th>
                                 </tr>
                             </thead>
+                            <?php
+                            $query = mysqli_query($koneksi, "SELECT * FROM tbl_calonketos");
+                            while ($calon = mysqli_fetch_assoc($query)):
+                            ?>
                             <tbody>
                                 <tr>
+                                    
                                     <td>
                                         <div class="d-flex px-2 py-1">
                                             <div>
@@ -262,20 +263,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="avatar-group mt-2">
-                                            <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
-                                                <img src="../assets/img/team-1.jpg" alt="team1">
-                                            </a>
-                                            <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
-                                                <img src="../assets/img/team-2.jpg" alt="team2">
-                                            </a>
-                                            <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexander Smith">
-                                                <img src="../assets/img/team-3.jpg" alt="team3">
-                                            </a>
-                                            <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
-                                                <img src="../assets/img/team-4.jpg" alt="team4">
-                                            </a>
-                                        </div>
+                                        <span class="text-secondary text-xs font-weight-bold"><?php echo $calon['misi']; ?></span>
                                     </td>
                                     <td class="align-middle text-center text-sm">
                                         <span class="text-xs font-weight-bold"> $14,000 </span>
@@ -482,6 +470,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                                     </td>
                                 </tr>
                             </tbody>
+                            <?php endwhile; ?>
                         </table>
                     </div>
                 </div>
