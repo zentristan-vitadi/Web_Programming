@@ -49,7 +49,6 @@ $table .= '
 </table>
 ';
 
-
 // render
 $pdf->writeHTML($table, true, false, true, false, '');
-$pdf->Output('laporan_siswa.pdf', 'I');
+$pdf->Output('laporan_calon_ketos.pdf', 'I');
